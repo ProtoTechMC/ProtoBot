@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "protobot"
+version = "0.1.0"
+description = "Prototech Discord Bot"
+authors = ["Matias Pierobon <matias.pierobonm@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.scripts]
+bot = "protobot.bot.start"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+"discord.py" = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
