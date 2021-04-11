@@ -7,6 +7,8 @@ from protobot.roles.checks import can_give_friend, can_grant_friend, can_have_fr
 from protobot.roles.messages import friend_request
 from protobot.roles.utils import request_channel, bot, get_role
 
+from random import randint
+
 
 @commands.command()
 @commands.check(can_give_friend)
@@ -23,6 +25,7 @@ async def friend(ctx: Context, member: Member):
     request = await requests.send(embed=friend_request(ctx, member))
     await request.add_reaction('✅')
     await request.add_reaction('❎')
+    await add_troll_face(ctx, request)
 
     def check(reaction: Reaction, user: Member):
         emoji = str(reaction.emoji)
@@ -57,6 +60,7 @@ async def friend(ctx: Context, member: Member):
     request = await requests.send(embed=friend_request(ctx, member))
     await request.add_reaction('✅')
     await request.add_reaction('❎')
+    await add_troll_face(ctx, request)
 
     def check(reaction: Reaction, user: Member):
         emoji = str(reaction.emoji)
@@ -74,3 +78,8 @@ async def friend(ctx: Context, member: Member):
         await message.add_reaction('❎')
     
     await request.add_reaction('👍')
+
+async def add_troll_face(ctx, request):
+    emoji = bot(ctx).get_emoji(324039959873060875)
+    if emoji is not None:
+        await request.add_reaction(emoji)
